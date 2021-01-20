@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的账单</title>
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+</head>
+<style>
+    html, body{
+        height: 100%; 
+    }
+    body {
+        margin: 0;
+        position:fixed;
+        width:100%;
+        height:100%
+    }
+
+    #mian {
+        width: 100%;
+        height: 100%; 
+    }
+</style>
+<body>
+    <div id="mian">
+        
+    </div>
+</body>
+</html>
+<script src="./js/jQuery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="./js/base.js"></script>
+
+<script>
+    $(function(){
+
+    });
+    var vm = new Vue({
+        el:'#mian',
+        data:{
+            token:'',
+            list:[],
+        },
+        methods:{
+             getUrlData:function(){
+                // this.token = window.location.href.split('?')[1].split('&')[0];
+                getUrlStr = function (name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]);
+                    return null;
+                };
+                
+                this.token = getUrlStr('token');
+                if(this.token === null){
+                    this.token = window.location.href.split('?')[1].split('&')[0];
+                }
+            }, 
+            getList(){
+                let _this = this;
+                $.ajax({
+                    url: baseUrl + "api/student/account/paymentDemandsList",
+                    dataType: 'json',
+                    type: 'GET',
+                    data:{
+                        page:1,
+                        limit:1000,
+                    },
+                    headers:{
+                        token:_this.token
+                    },
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function (result) {
+                        console.log(result.body.list);
+                        _this.list = result.body.list;
+                    },
+                    error: function (error) {
+                        
+                    }, 
+                })
+            },
+        },
+        mounted:function(){
+            this.getUrlData();
+            this.getList();
+        }
+    });
+</script>

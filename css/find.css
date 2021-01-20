@@ -1,0 +1,224 @@
+/* 统一居中样式 */
+.find_active {
+    width: 3.5rem;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.find,.findDeng {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    background: #F2F3F4;
+}
+
+/* 内容 - 导航*/
+.find_content {
+    flex: 1;
+    overflow: auto;
+    margin: 0.49rem 0 1.17rem 0;
+}
+.find > div:nth-child(1) {
+    width: 100%;
+    height: 0.49rem;    
+    background: #fff;
+    border-bottom: 0.01rem solid #eee;
+    position: fixed;
+    top: 0;
+}
+.find_content .find_active {
+    position: relative;
+}
+.find_active .find_content_hd {
+    width: 100%;
+    height: 0.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    font-size: 0;   
+    /* size:0 解决inline-block后位置不对 */
+}
+/* 隐藏滚动栏 */
+.find_content_hd::-webkit-scrollbar,.find_content::-webkit-scrollbar { width: 0 !important }
+.find_content_hd,.find_content { 
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+ }
+
+.find_content_hd li {
+    display: inline-block;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    font-size: 0.15rem;
+    color: #A4A4A4; 
+    margin: 0 0.1rem;
+    cursor: pointer;
+}  
+.find_content_hd li:nth-child(1){
+    margin-left: 0;
+}
+
+.find_content_hd .hd_active { 
+    border-bottom: 0.02rem #FB7653 solid;
+    color: #FB7653;
+    font-weight: 600;
+}
+/* 登陆状态 - 导航 */
+.findDeng .find_content_hd {
+    display: flex;
+    justify-content: space-around; 
+}
+
+
+/* 内容 - 展示 */
+    /* 内容-登陆状态-展示 */
+.findDeng .find_content {
+    position: relative;
+}
+.findDeng .content_Bou:nth-child(1) {
+    z-index: 1;
+}
+
+/* 点击加载更多 */
+.content_btn {
+    position: absolute;
+    bottom:-0.65rem;
+    width: 100%;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    color: rgb(80, 79, 79);
+    font-size: 0.14rem;
+    margin-bottom: 0.1rem;
+}
+
+.find .down-refresh{
+    position: absolute;
+    top:-0.65rem;
+    width: 100%;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    color: rgb(80, 79, 79);
+    font-size: 0.14rem;
+    margin-bottom: 0.1rem;
+}
+.content_Bou { 
+    width: 100%;
+    position: relative;
+    z-index: 0;
+}
+.content_bg {
+    background: #fff;
+    margin-bottom: 0.1rem;
+}
+
+.Bou_con {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Bou_con_left {
+    width: 2.4rem;
+    height: 1.46rem;
+    font-size: 0.14rem;
+    color: #6b6b6b;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.Bou_con > .Bou_con_left > h3 {
+    width: 100%;
+    font-size: 0.16rem;
+    margin-top: 0.12rem;
+}   
+.Bou_con > .Bou_con_left > h3 > a {
+    width: 100%;
+    color: #333;
+    word-wrap:break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.Bou_con > .Bou_con_left > span:nth-child(2) {
+    overflow: hidden;
+    word-wrap:break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.Bou_con > .Bou_con_left > span:nth-child(3) {
+    height: 0.17rem;
+}
+.Bou_con > .Bou_con_left > span:nth-child(3) a {
+    color: #6b6b6b;
+}
+.Bou_con > .Bou_con_left > span:nth-child(3) img {
+    width: 0.17rem;
+    height: 0.17rem;
+    float: left;
+    margin-right: 0.08rem;
+}
+
+.Bou_con_right {
+    width: 0.84rem;
+    height: 0.88rem
+}
+.Bou_con_right img {
+    width: 100%;
+    height: 100%;
+}
+
+/* 尾 */
+.find_footer {
+    width: 100%;
+    height: 1.17rem;
+    background: url(../image/find/discover_Float.png) 100% 100%;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+}
+.find_footer span {
+    display: block;
+    height: 0.1rem;
+    line-height: 0.1rem;
+    margin-top: 0.2rem;
+    padding: 0.1rem 0.15rem;
+    border: 0.02rem solid #FB7653;
+    border-radius: 0.18rem;
+    font-size: 0.14rem;
+    color: #FB7653; 
+}
+.find_footer .find_footer_active {
+    background: #FB7653;
+    color: #fff;
+}
+
+
+/* 新增标签的样式 */
+.lab-p {
+    overflow: hidden;
+}
+.lab-p span {
+    float: left;
+    padding: 0.04rem 0.06rem;
+    border-radius: 0.05rem;
+    font-size: 0.08rem;
+    margin-right: 0.1rem;
+}
+.lab1 {
+    background: #FFE1D9;
+    color: #FB7653;
+}
+.lab2 {
+    background: #E2EEFB;
+    color: #53A2FF;
+}
+.lab3 {
+    background: #E0F2E8;
+    color: #7AD3A0;
+}

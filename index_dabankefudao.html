@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>大班课</title>
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        /* position:fixed; */
+        width: 100%;
+        height: 100%
+    }
+
+    #mian {
+        width: 100%;
+        height: 100%;
+    }
+
+    .bgimg {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        vertical-align: bottom;
+        display: block
+    }
+
+    .playButton {
+        width: 24.7rem;
+        height: 15.4rem;
+        background: #EAFDF4;
+        position: absolute;
+        bottom: 11.8rem;
+        left: 2.7rem;
+        border-radius:5px; 
+        display: none;
+    }
+    .videoItem{
+        position: relative;
+        /* display: flex;
+        justify-content:center; */
+    }
+    .playButton video{
+        width: 100%;
+        height:100%;
+        /* object-fit:fill;   */
+    }
+    video::-webkit-media-controls-mute-button{
+        display: none!important;
+    }
+</style>
+
+<body>
+    <div id="mian">
+        <img class="bgimg" src="./images/111.png" alt="">
+        <img class="bgimg" src="./images/222.png" alt="">
+        <img class="bgimg" src="./images/333.png" alt="">
+        <div class="videoItem">
+            <img id="showVideo" class="bgimg" src="./images/444.png" alt="">
+            <div class="playButton">
+                <video autoplay="autoplay" controlsList="nodownload" webkit-playsinline="" playsinline="" x5-playsinline="" x-webkit-airplay="allow" controls="controls" src="http://recordcdn.talk-cloud.net/340f6e31-5763-455b-a63c-9b4aa80667fd-179518395/record.mp4"></video>
+            </div>
+        </div>
+        
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="./js/base.js"></script>
+
+<script>
+    $(function () {
+        $('#showVideo').click(function(){
+            $('.playButton').show();
+        });
+    });
+    var vm = new Vue({
+        el: '#mian',
+        data: {
+
+        },
+        methods: {
+
+        },
+        mounted: function () {
+
+        }
+    });
+</script>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./css/text.css" /> 
+    <link rel="stylesheet" type="text/css" href="./css/swiper-4.3.3.min.css" />     
+    <!-- 动态计算px-rem转换 -->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+                    docEl.getElementsByTagName("body")[0].style.fontSize = docEl.style.fontSize;
+                };
+    
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+    <title>考试大礼包</title>
+</head>
+<style>
+    .test_case p{
+        font-family: "微软雅黑";
+        text-align:center;
+    }
+</style>
+<body> 
+    <div class="text">
+        <div class="con_father">
+                <!-- 上header -->
+                <div class="text_banner"></div>
+                    <!-- 中 -->
+                <div class="text_back">
+    
+                    <p class="con_p">常见学习问题</p>
+                    <!-- banner -->
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="./image/text/text_five@2x.png" />
+                                <img src="./image/text/text_six@2x.png" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="./image/text/text_three@2x.png" />
+                                <img src="./image/text/text_four@2x.png" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="./image/text/text_one@2x.png" />
+                                <img src="./image/text/text_two@2x.png" />
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+    
+                    <!-- 虚线 -->
+                    <div class="line"></div>
+    
+                    <p class="con_p">一站服务</p>
+                    
+                    <div id="text_tutor">
+                        <dl>
+                            <dt><img src="./image/text/text_tutor@2x.png" /></dt>
+                            <dd>
+                                <h4>选择专业，匹配Tutor</h4>
+                                <p>根据学生提供的课程材料匹配最合适tutor</p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><img src="./image/text/text_information@2x.png" /></dt>
+                            <dd>
+                                <h4>提供信息，定制课程</h4>
+                                <p>专属课程顾问，开展课前沟通，根据学生实际学习情况，定制课程</p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><img src="./image/text/text_time@2x.png" /></dt>
+                            <dd>
+                                <h4>确认时间，开始上课</h4>
+                                <p>双方确认时间，通过网络平台上课，简单方便快捷，课程有不清楚的地方可以直接向老师提问，不给问题留机会</p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><img src="./image/text/text_ end@2x.png" /></dt>
+                            <dd>
+                                <h4>考试结束，留存材料</h4>
+                                <p>辅导结束后，即获得上课的辅导材料，反复复习</p>
+                            </dd>
+                        </dl>
+                    </div>
+                    
+                    <!-- 虚线 -->
+                    <div class="line"></div>
+    
+                    <p class="con_p">服务亮点</p>
+                    <div class="text_service">
+                        <img src="./image/text/text_service@2x.png" />
+                    </div>
+    
+                    <!-- 虚线 -->
+                        <div class="line"></div> 
+    
+                    <p class="con_p">产品介绍</p>     
+                    <div class="text_introduce">
+                        <img src="./image/text/text_introduce@2x.png" />
+                    </div>
+                </div>
+    
+                <!-- 中下 -->
+                <div class="con_p">案例分析</div>       
+        </div>
+        <!-- 中下-banner 铺满，所以拿到con_father外面-->
+        <div class="test_case">
+            <p style="font-size:.2rem;">同学A</p>
+            <p style="font-size:.14rem;">学校：Deakin University</p>
+            <div style="padding:.16rem;">
+                <img style="width:100%;" src="./image/text/anli1.png" alt="">
+            </div>
+            <p style="font-size:.14rem;">万能班长辅导<span style="font-size:.18rem;font-weight: 550">前</span></p>
+            <div style="padding:.16rem;">
+                <img style="width:100%;"  src="./image/text/anli2.png" alt="">
+            </div>
+            <p style="font-size:.14rem;">万能班长辅导<span style="font-size:.18rem;font-weight: 550">后</span></p>
+            <!-- <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="./image/text/test_case1@2x.png" id="case_img" />                        
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./image/text/test_case2@2x.png" id="case_img" />   
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>    -->
+        </div>
+
+        <!-- 底footer -->
+        <div class="con_father">    
+            <div class="text_private">
+                <img src="./image/text/text_private@2x.png" />
+                <div class="btn fo_btn" >点击咨询</div>
+            </div> 
+        </div>
+    </div> 
+</body>
+<script src="./js/jquery.js"></script>
+<script src="./js/swiper.min.js"></script>
+<script src="./js/style.js"></script>
+<script src="./js/text.js"></script>
+</html>

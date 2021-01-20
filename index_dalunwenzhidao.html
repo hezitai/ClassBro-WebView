@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>大论文指导</title>
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        /* position:fixed; */
+        width: 100%;
+        height: 100%
+    }
+
+    #mian {
+        width: 100%;
+        height: 100%;
+    }
+
+    .bgimg {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        vertical-align: bottom;
+        display: block
+    }
+
+    .mask {
+        background: rgba(0, 0, 0, 0.7);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        display: none;
+    }
+
+    #imgView img {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+    .closeBtn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 3rem;
+        height: 3rem;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-size: 3rem;
+        text-align: center;
+        line-height: 2.8rem;
+        border-radius: 10px;
+        z-index: 999;
+    }
+</style>
+
+<body>
+    <div id="mian">
+        <img class="bgimg" src="./images/1111111.png" alt="">
+        <img class="bgimg" src="./images/2222222.png" alt="">
+        <img class="bgimg" id="lookImg1" src="./images/3333333.png" alt="">
+        <img class="bgimg" id="lookImg2" src="./images/4444444.png" alt="">
+        <img class="bgimg" id="lookImg3" src="./images/5555555.png" alt="">
+        <img class="bgimg" id="lookImg4" src="./images/6666666.png" alt="">
+        <img class="bgimg" id="lookImg5" src="./images/7777777.png" alt="">
+        <img class="bgimg" id="lookImg6" src="./images/8888888.png" alt="">
+        <img class="bgimg" id="lookImg7" src="./images/9999999.png" alt="">
+        <img class="bgimg" id="lookImg8" src="./images/0000000.png" alt="">
+        <img class="bgimg" id="lookImg9" src="./images/10000000.png" alt="">
+    </div>
+    <div class="mask" id="mask">
+        <div class="closeBtn">×</div>
+        <div id="imgView"><img id="imgViewItem" src="" alt=""></div>
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="https://cdn.bootcss.com/touchjs/0.2.14/touch.min.js"></script>
+<script src="./js/base.js"></script>
+<script src="js/touchmove.js"></script>
+
+<script>
+    $(function () {
+        for (var i = 1; i < 10; i++) {
+            $('#lookImg' + i).click(function (e) {
+                var imgUrl = this.src;
+                var useUrlName = imgUrl.split('images/')[1].split('.png')[0];
+                var useImgUrl = '';
+                if (useUrlName == '3333333') {
+                    useImgUrl = './images/p1.png';
+                } else if (useUrlName == '4444444') {
+                    useImgUrl = './images/p2.png';
+                } else if (useUrlName == '5555555') {
+                    useImgUrl = './images/p3.png';
+                } else if (useUrlName == '6666666') {
+                    useImgUrl = './images/p4.png';
+                } else if (useUrlName == '7777777') {
+                    useImgUrl = './images/p5.jpg';
+                } else if (useUrlName == '8888888') {
+                    useImgUrl = './images/p6.jpg';
+                } else if (useUrlName == '9999999') {
+                    useImgUrl = './images/p7.png';
+                } else if (useUrlName == '0000000') {
+                    useImgUrl = './images/p8.png';
+                } else if (useUrlName == '10000000') {
+                    useImgUrl = './images/p9.png';
+                }
+                $('#mask').show();
+                $('#imgViewItem').attr('src', useImgUrl);
+            });
+        }
+
+        $('#mask').click(function () {
+            $('#mask').hide();
+            $('#imgView').find('img').attr('src', '');
+        });
+        $('.closeBtn').click(function () {
+            $('#mask').hide();
+            $('#imgView').find('img').attr('src', '');
+        })
+
+        var $targetObj = $('#imgViewItem');
+        //初始化设置
+        cat.touchjs.init($targetObj, function (left, top, scale, rotate) {});
+        //初始化拖动手势
+        cat.touchjs.drag($targetObj, function (left, top) {});
+        //初始化缩放手势
+        cat.touchjs.scale($targetObj, function (scale) {});
+        //初始化旋转手势
+        // cat.touchjs.rotate($targetObj, function (rotate) {});
+    });
+</script>

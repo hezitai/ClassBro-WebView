@@ -1,0 +1,65 @@
+.tearch { 
+    background: #DDF8FF;
+}
+
+.tear_count { 
+    width: 100%;
+}
+
+/* 头部 */
+.tear_header {
+    width: 100%;
+    height: 2.52rem;
+}
+.tear_header img {
+    height: 100%;
+    width: 100%;
+}
+
+/* 选拔 */
+.tear_selection { 
+    width: 100%;
+    height: 5.23rem;
+    margin: 0.2rem auto 0;
+}
+.tear_selection img {
+    width: 100%;
+}
+
+/* 金牌讲师1 */
+.tear_linda,.tear_jackie { 
+    width: 90%;
+    height: 3.72rem;
+    margin: .4rem auto 0;
+}
+.tear_linda img,.tear_jackie img { 
+    width: 100%;
+}
+
+/* 讲师2 */
+.tear_one { 
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.tear_one div { 
+    width: 100%;
+    height: 2.75rem;
+    margin-bottom: .3rem;
+}
+.tear_one div img { 
+    width: 50%;
+    margin: .01rem;
+}
+
+/* 底部 */
+.tear_bottom  {
+    width: 100%;
+    height: 3.32rem;
+    padding-bottom: 0.6rem;
+}
+.tear_bottom img {
+    width: 100%;
+}

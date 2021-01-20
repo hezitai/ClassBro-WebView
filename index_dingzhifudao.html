@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定制辅导</title>
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        /* position:fixed; */
+        width: 100%;
+        height: 100%
+    }
+
+    #mian {
+        width: 100%;
+        height: 100%;
+    }
+
+    .bgimg {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        vertical-align: bottom;
+        display: block
+    }
+
+    .playButton {
+        width: 24.7rem;
+        height: 15.4rem;
+        /* background: #FCE6E3; */
+        background:#fff;
+        position: absolute;
+        bottom: 10.6rem;
+        left: 2.46rem;
+        border-radius:10px; 
+        display: none;
+    }
+    .videoItem{
+        position: relative;
+        /* display: flex;
+        justify-content:center; */
+    }
+    .playButton video{
+        width: 100%;
+        height:100%;
+        /* object-fit:fill;   */
+    }
+    video::-webkit-media-controls-mute-button{
+        display: none!important;
+    }
+</style>
+
+<body>
+    <div id="mian">
+        <img class="bgimg" src="./images/1.png" alt="">
+        <img class="bgimg" src="./images/2.png" alt="">
+        <img class="bgimg" src="./images/3.png" alt="">
+        <img class="bgimg" src="./images/4.png" alt="">
+        <!-- <img class="bgimg" src="./images/5.png" alt=""> -->
+        <div class="videoItem">
+            <img id="showVideo" class="bgimg" src="./images/5.png" alt="">
+            <div class="playButton">
+                <video autoplay="autoplay" controlsList="nodownload" webkit-playsinline="" playsinline=""
+                    x5-playsinline="" x-webkit-airplay="allow" controls="controls"
+                    src="https://classbro-oss.oss-cn-hongkong.aliyuncs.com/statice-resource/20190417/bf36d3c464a94e10a984518e4377cc4b.mp4"></video>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="./js/base.js"></script>
+
+<script>
+    $(function () {
+        $('#showVideo').click(function(){
+            $('.playButton').show();
+        });
+    });
+    var vm = new Vue({
+        el: '#mian',
+        data: {
+
+        },
+        methods: {
+
+        },
+        mounted: function () {
+
+        }
+    });
+</script>

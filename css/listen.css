@@ -1,0 +1,182 @@
+/* 弹性盒 */
+.listen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+/* 公共居中样式 */
+.listen_style {
+    width: 3.4rem;
+    margin: 0 auto;
+    position: relative;
+}
+/* 清除高度塌陷 */
+.listen_style:after {
+    content: "";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+/* 切换及筛选 */
+.listen_tab {
+    height: 0.46rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.16rem;
+    color: #7E7E7E;
+    border-bottom: 1px solid #eee;
+}
+.listen_tab .tab_active {
+    color: #FB7653;
+}
+.listen_tab span {
+    line-height: 0.22rem;
+    float: left;
+    margin-right: 0.24rem;
+}
+.listen_tab span:nth-child(3) {
+    line-height: 0.2rem;
+    float: right;
+    margin-right: 0;
+    font-size: 0.14rem;
+    display: flex;
+    align-items: center;
+}
+.listen_tab span:nth-child(3) img {
+    height: 0.15rem;
+    width: 0.14rem;
+    display: inline-block;
+    margin-left: 0.05rem;
+}
+
+/* 内容展示区 */
+.listen_content { 
+    width: 100%;
+    flex: 1;
+    overflow: auto;
+    position: relative;
+}
+/* 隐藏滚动栏 */
+.listen_content::-webkit-scrollbar { width: 0 !important }
+.listen_content{
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+}
+.listen_content > .listen_style > div { 
+    width: 100%;
+    display: none;
+}
+
+/* 精品课程 */
+.listen_content > .listen_style > .content_Bou { 
+    width: 100%;
+    display: block;
+}
+
+.Bou_con {
+    margin: 0.33rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+.Bou_con > a {
+    display: block;
+}
+/* 精品课程-图片 */
+.Bou_con_left { 
+    width: 0.9rem;
+    height: 1.24rem;
+}
+.Bou_con_left img {
+    width: 100%;
+    height: 100%;
+}
+/* 精品课程-介绍 */
+.Bou_con_right {
+    width: 2.39rem;
+    height: 1.24rem;
+}
+
+.Bou_con > .Bou_con_right > h3 {
+    width: 100%;
+    font-size: 0.16rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.Bou_con > .Bou_con_right > h3 > a {
+    color: #333;
+}
+
+.Bou_con > .Bou_con_right > span {
+    float: left;
+    clear: both;
+    margin: 0.2rem 0 0;
+}
+.Bou_con > .Bou_con_right > span:nth-child(2) {
+    padding: 0.05rem;
+    border-radius: 0.04rem;
+    background:#FFE1D9;
+    color:#FB7653;
+    font-size: 0.12rem;
+}
+.Bou_con > .Bou_con_right > span:nth-child(3) {
+    font-size: 0.14rem;
+    color: #333;
+    display: block;
+}
+
+/* 课件资源-介绍 去掉flex布局*/
+.content_res .Bou_con .Bou_con_right {
+    width: 2.39rem;
+    height: 1.24rem;
+    display: block;
+}
+
+/* 筛选框 */
+.listen > .listen_content > .content_screen {
+    position: absolute;
+    top: 0;
+    display: none;
+    width: 100%;
+    background: #fff;
+}
+.content_screen > .listen_style {
+    height: 100%;
+}
+.content_screen_check {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 0.26rem;
+}
+.content_screen_check span {
+    float: left;
+    padding: 0.09rem 0.26rem;
+    margin-bottom: 0.26rem;
+    border: 0.01rem solid #eee;
+    font-size: 0.14rem;
+    text-align: center;
+}
+.check_active {
+    background: #FFF1EE;
+    color: #F96F49;
+}
+.content_screen_check span:nth-child(3n+3) {
+    margin-right: 0;
+}
+.content_screen .content_screen_btn {
+    width: 1.5rem;
+    line-height: 0.3rem;
+    margin: 0.14rem auto 0.28rem;
+    font-size: 0.18rem;
+    color: #fff;
+    text-align: center;
+    background: #f96f49;
+    border-radius: 0.04rem;
+}

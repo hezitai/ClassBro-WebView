@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>课程评价</title>
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    #mian {
+        width: 100%;
+        height: 100%;
+    }
+
+    .top-images {
+        width: 100%;
+    }
+
+    .top-images img {
+        width: 100%;
+    }
+
+    ul {
+        list-style: none;
+        margin-top: 2rem;
+    }
+
+    li {
+        position: relative;
+        margin: 1.6rem 0;
+    }
+
+    li .titles {
+        color: #777C8B;
+    }
+
+    .star-box {
+        position: absolute;
+        right: 1rem;
+        top: 0rem;
+    }
+
+    #star-item {}
+
+    .full-star {
+        background: url("./images/Starx.png") no-repeat center center;
+        background-size: 100% 100%;
+    }
+
+    .empty-star {
+        background: url("./images/Star.png") no-repeat center center;
+        background-size: 100% 100%;
+    }
+
+    .lines {
+        width: 100%;
+        height: 1px;
+        background: #F3F3F3;
+        margin: 2rem 0;
+    }
+
+    .content {
+        padding: 0 2rem;
+    }
+
+    .bottom textarea {
+        margin-top: 1.5rem;
+        width: 24rem;
+        height: 8rem;
+        border-radius: 20px;
+        background: #F3F3F3;
+        border: none;
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .submit {
+        width: 100%;
+        height: 3.5rem;
+        border-radius: 10px;
+        background: #FF7500;
+        color: #fff;
+        border: none;
+        font-size: 1.2rem;
+        margin-top: 1rem;
+    }
+
+    .masks {
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        background: rgba(0, 0, 0, 0.4);
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    .pingjiaing {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 26rem;
+        height: 23rem;
+        z-index: 9999;
+    }
+
+    .pingjiaguo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .pingjiawenzi {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 10rem;
+        height: 10rem;
+        padding-top: 23rem;
+        font-size: 1.8rem;
+    }
+</style>
+
+<body>
+    <div id="mian">
+        <div v-if='isEval == false'>
+            <!--   -->
+            <div class="masks" v-if='showMasks'></div>
+            <!-- <div class="pingjiaing">
+                <img src="./images/pingjiaed.png">
+            </div> -->
+            <div class="top-images"><img src="./images/pj.png" alt=""></div>
+            <ul>
+                <li>
+                    <p class="titles">课堂网络质量</p>
+                    <div class="star-box">
+                        <!-- <span> -->
+                        <span v-for="(item,index) in list" :key='index'
+                            style="display: inline-block; width: 1.4rem; height: 1.4rem; margin: 0 .5rem;"
+                            @click="isClick&&star1(index)" :class="xing1 > index ? stara : starb"></span>
+                    </div>
+                </li>
+                <li>
+                    <p class="titles">是否达到您的辅导要求</p>
+                    <div class="star-box">
+                        <span v-for="(item,index) in list" :key='index'
+                            style="display: inline-block; width: 1.4rem; height: 1.4rem; margin: 0 .5rem;"
+                            @click="isClick&&star2(index)" :class="xing2 > index ? stara : starb"></span>
+                    </div>
+                </li>
+                <li>
+                    <p class="titles">使用万能班长平台满意度</p>
+                    <div class="star-box">
+                        <span v-for="(item,index) in list" :key='index'
+                            style="display: inline-block; width: 1.4rem; height: 1.4rem; margin: 0 .5rem;"
+                            @click="isClick&&star3(index)" :class="xing3 > index ? stara : starb"></span>
+                    </div>
+                </li>
+            </ul>
+            <div class="content">
+                <div class="lines"></div>
+                <h3>辅导讲师</h3>
+                <ul style="margin-left:0;padding-left: 0;">
+                    <li>
+                        <p class="titles">专业水平</p>
+                        <div class="star-box" style="right:-1rem;">
+                            <span v-for="(item,index) in list" :key='index'
+                                style="display: inline-block; width: 1.4rem; height: 1.4rem; margin: 0 .5rem;"
+                                @click="isClick&&star4(index)" :class="xing4 > index ? stara : starb"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="titles">上课态度</p>
+                        <div class="star-box" style="right:-1rem;">
+                            <span v-for="(item,index) in list" :key='index'
+                                style="display: inline-block; width: 1.4rem; height: 1.4rem; margin: 0 .5rem;"
+                                @click="isClick&&star5(index)" :class="xing5 > index ? stara : starb"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="titles">辅导技巧</p>
+                        <div class="star-box" style="right:-1rem;">
+                            <span v-for="(item,index) in list" :key='index'
+                                style="display: inline-block; width: 1.4rem; height: 1.4rem; margin: 0 .5rem;"
+                                @click="isClick&&star6(index)" :class="xing6 > index ? stara : starb"></span>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="bottom">
+                    <textarea class="" v-model='textarea' style="resize:none" :disabled='disabled'
+                        placeholder="请输入你对本次课程的意见及建议，这对我们很重要"></textarea>
+                </div>
+
+                <button class="submit" @click='submit' v-if='status == "STUD"'
+                    :disabled='disabled'>{{submitTest}}</button>
+            </div>
+        </div>
+        <div v-if='isEval == true'>
+            <div class="top-images"><img src="./images/pj.png" alt=""></div>
+            <img class="pingjiaguo" src="./images/pingjiaed2.png">
+            <p class="pingjiawenzi">课程已评价</p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="./js/base.js"></script>
+
+<script>
+    var vm = new Vue({
+        el: '#mian',
+        data: function () {
+            return {
+                list: [0, 1, 2, 3, 4],
+                stara: 'full-star', //亮星星
+                starb: 'empty-star', //暗星星
+                xing1: 0,
+                xing2: 0,
+                xing3: 0,
+                xing4: 0,
+                xing5: 0,
+                xing6: 0,
+                textarea: '',
+                token: '',
+                disabled: false,
+                submitTest: '提交评价',
+                isClick: true,
+                courseId: '',
+                teacId: '',
+                token: '',
+                showMasks: false,
+                isEval: false,
+                status: null,
+            }
+        },
+        methods: {
+            getUrlData: function () {
+                // this.token = window.location.href.split('?')[1].split('&')[0];
+                // // this.teacId = window.location.href.split('?')[1].split('&')[1];
+                // this.courseId = window.location.href.split('?')[1].split('&')[1];
+                // // debugger;
+                // this.status = window.location.href.split('?')[1].split('&')[2]
+                getUrlStr = function (name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]);
+                    return null;
+                };
+
+                this.token = getUrlStr('token');
+                this.courseId = getUrlStr('id');
+                this.status = getUrlStr('status');
+                if (this.token === null || this.courseId === null || this.status === null) {
+                    this.token = window.location.href.split('?')[1].split('&')[0];
+                    this.courseId = window.location.href.split('?')[1].split('&')[1];
+                    this.status = window.location.href.split('?')[1].split('&')[2]
+                }
+            },
+
+            getClassRoomInfo: function () { //获取课堂信息
+                var _this = this;
+                $.ajax({
+                    url: baseUrl + "api/student/course/findCourseInfo/" +
+                        _this.courseId,
+                    dataType: 'json',
+                    type: 'GET',
+                    headers: {
+                        token: _this.token
+                    },
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function (result) {
+                        console.log(result.body);
+                        if (result.body.isEval == true) {
+                            _this.showMasks = true;
+                            _this.submitTest = '课程已评价';
+                            _this.isEval = true;
+                        }
+                    },
+                    error: function (error) {
+
+                    },
+                });
+            },
+            star1(val) {
+                this.xing1 = val + 1;
+            },
+            star2(val) {
+                this.xing2 = val + 1;
+            },
+            star3(val) {
+                this.xing3 = val + 1;
+            },
+            star4(val) {
+                this.xing4 = val + 1;
+            },
+            star5(val) {
+                this.xing5 = val + 1;
+            },
+            star6(val) {
+                this.xing6 = val + 1;
+            },
+            submit: function () {
+                var _this = this;
+
+                if (_this.xing6 == 0) {
+                    alert('请对课堂进行评价');
+                    return;
+                } else if (_this.xing1 == 0) {
+                    alert('请对课堂进行评价');
+                    return;
+                } else if (_this.xing2 == 0) {
+                    alert('请对课堂进行评价');
+                    return;
+                } else if (_this.xing3 == 0) {
+                    alert('请对课堂进行评价');
+                    return;
+                } else if (_this.xing4 == 0) {
+                    alert('请对课堂进行评价');
+                    return;
+                } else if (_this.xing5 == 0) {
+                    alert('请对课堂进行评价');
+                    return;
+                };
+                var data = {
+                    courseId: _this.courseId,
+                    // teacId: _this.teacId,
+                    networkRate: _this.xing1,
+                    platRate: _this.xing2,
+                    expectRate: _this.xing3,
+                    professRate: _this.xing4,
+                    attitudeRate: _this.xing5,
+                    skillRate: _this.xing6,
+                    proposal: _this.textarea,
+
+                };
+                console.log(data);
+                $.ajax({
+                    type: "POST",
+                    url: baseUrl + "api/student/course/evaluationCourse",
+                    data: data,
+                    headers: {
+                        contentType: "application/json",
+                        // token:'0093b3ff-b2a4-416b-961f-a3109a141f03',
+                        token: _this.token,
+                    },
+                    success: function (r) {
+                        console.log(r);
+                        // debugger;
+                        if (r.status == 200) {
+                            _this.disabled = true;
+                            _this.isClick = false;
+                            _this.showMasks = true;
+                            _this.submitTest = '已评价';
+                            alert('评价成功');
+
+                            _this.getClassRoomInfo();
+                        } else {
+                            alert(r.body.msg);
+                        }
+                    }
+                });
+            }
+        },
+        mounted: function () {
+            this.getUrlData();
+            this.getClassRoomInfo();
+        }
+    });
+</script>

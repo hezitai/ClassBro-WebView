@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>上课通知</title>
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    #mian {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        /* width: 100%; */
+        /* overflow: hidden; */
+        font-family: '微软雅黑';
+        /* position: fixed; */
+        /*width:100%;*/
+        /* height: 100% */
+        /*overflow-x: hidden;*/
+    }
+
+    #main {
+        width: 100%;
+        background: #fff;
+        /* overflow-x: hidden;
+        position: relative; */
+    }
+
+    .main-bkg {
+        width: 100%;
+        min-height: 52.9rem;
+        background-size: 100% 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .bkg1 {
+        background: url("./images/quxiaopaike.png") no-repeat center center;
+        background-size: 100% 100%;
+        height: 52.9rem;
+        width: 100%;
+    }
+
+    .bkg2 {
+        background: url("./images/shangke.png") no-repeat center center;
+        background-size: 100% 100%;
+        height: 52.9rem;
+        width: 100%;
+    }
+
+    .bkg3 {
+        background: url("./images/paike.png") no-repeat center center;
+        background-size: 100% 100%;
+        height: 52.9rem;
+        width: 100%;
+    }
+
+    .content {
+        position: absolute;
+        width: 100%;
+        top: 20.5rem;
+        z-index: 999;
+    }
+
+    .alert-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        /* padding-left:7.8rem; */
+        /* padding-right:7rem; */
+        /* width:17rem; */
+        text-align: center;
+    }
+
+    .main-button {
+        border: .1rem solid #362609;
+        border-radius: 1rem;
+        background: #FFB200;
+        text-align: center;
+        /* line-height: ; */
+        margin: .5rem 4rem 0 4rem;
+        width: 22rem;
+        height: 3rem;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: #fff;
+    }
+
+    .main-no-button {
+        border: .1rem solid #362609;
+        border-radius: 1rem;
+        background: #fff;
+        text-align: center;
+        /* line-height: ; */
+        border: 1px solid #666;
+        margin: .5rem 4rem 0 4rem;
+        width: 22rem;
+        height: 3rem;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: #666;
+    }
+
+    .tips-title {
+        color: #555;
+        font-size: .6rem;
+        /* padding: 0 6rem; */
+        text-align: center;
+    }
+
+    .whiteBoread-box {
+        background: url("./images/whiteBoread.png") no-repeat center center;
+        background-size: 100% 100%;
+        min-height: 12rem;
+        margin: 0 4rem 1rem 4rem;
+        position: relative;
+    }
+
+    .whiteBoread-box p {
+        /* text-align: center; */
+        padding-left: 2.8rem;
+    }
+
+    .class-title {
+        padding-top: 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        padding-left: .8rem;
+        padding-right: .8rem;
+        margin-bottom: .4rem;
+    }
+
+    .class-info {
+        color: #555;
+        padding-left: .8rem;
+        padding-right: .8rem;
+        margin: 0;
+        /* text-align: left!important; */
+        font-size: .8rem;
+    }
+
+    .class-time {
+        position: absolute;
+        right: 2rem;
+        bottom: 2.5rem;
+    }
+
+    .class-teacher img {
+        width: 1.5rem;
+        height: 1.5rem;
+        /* background: #555; */
+        border-radius: 50%;
+        vertical-align: middle;
+        border: .009rem solid #666;
+        margin-right: .5rem;
+    }
+
+    .class-teacher {
+        position: absolute;
+        right: 2rem;
+        bottom: .6rem;
+    }
+
+    .class-mask {
+        width: 100%;
+        height: 7rem;
+    }
+
+    [v-cloak] {
+        display: none;
+    }
+</style>
+
+<body>
+    <div id="main" v-cloak>
+        <div class="main-bkg">
+            <div class="bkg2"></div>
+            <div class="content">
+                <p class="alert-title">{{titleClassBegin1}}<br />“{{classRoomInfo.name}}”<br />{{titleClassBegin2}}</p>
+                <div v-show='status == "STUD"'>
+                    <button class="main-button" @click='copyUrl'>复制上课地址</button>
+                    <p class="tips-title">为了更好的上课体验，请复制上课地址，去电脑端上课</p>
+                    <button class="main-button" @click='goClass'>开始上课</button>
+                </div>
+                <div v-show='status == "TEAC"'></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="./js/base.js"></script>
+
+<script>
+    var vm = new Vue({
+        el: '#main',
+        data: {
+            type: 0,
+            token: '',
+            classRoomId: '',
+            classRoomInfo: {},
+            endTime: '',
+            status: '',
+            titleCancel: '很抱歉，课堂已被取消，对你带来的不变请谅解',
+            titleClassBegin1: '同学，课堂',
+            titleClassBegin2: '已开始，请立即进入课堂',
+            studJoinUrl: '',
+            isAndroidBtn: false,
+        },
+        methods: {
+            getUrlData: function () {
+                // this.token = window.location.href.split('?')[1].split('&')[0];
+                // this.classRoomId = window.location.href.split('?')[1].split('&')[1];
+                // this.status = window.location.href.split('?')[1].split('&')[2];
+                getUrlStr = function (name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]);
+                    return null;
+                };
+
+                this.token = getUrlStr('token');
+                this.classRoomId = getUrlStr('id');
+                this.status = getUrlStr('status');
+                if (this.token === null || this.classRoomId === null || this.status === null) {
+                    this.token = window.location.href.split('?')[1].split('&')[0];
+                    this.classRoomId = window.location.href.split('?')[1].split('&')[1];
+                    this.status = window.location.href.split('?')[1].split('&')[2];
+                }
+                var _this = this;
+                var u = navigator.userAgent;
+                var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
+                var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+                if (isIOS) {
+                    this.isAndroidBtn = true;
+                };
+            },
+            goClass: function () {
+                console.log(this.isAndroidBtn);
+                if (this.isAndroidBtn == true) {
+                    window.nativeInterface.executeMethod('s1');
+                } else {
+                    window.WebViewJavascriptBridge.callHandler(
+                        'executeMethod', {
+                            'param': 'consult'
+                        },
+                        function (responseData) {
+
+                        }
+                    );
+                }
+
+            },
+            copyUrl: function () {
+                var _this = this;
+                console.log(this.studJoinUrl);
+                if (this.studJoinUrl == undefined) {
+                    alert('复制失败')
+                } else {
+                    alert('复制成功')
+                }
+                this.copy(_this.studJoinUrl);
+            },
+            copy: function (str) {
+                var input = document.createElement("input");
+                input.value = str;
+                document.body.appendChild(input);
+                input.select();
+                input.setSelectionRange(0, input.value.length), document.execCommand('Copy');
+                document.body.removeChild(input);
+                var result = document.execCommand('Copy');
+            },
+
+            getClassRoomInfo: function () { //获取课堂信息
+                var _this = this;
+                if (_this.status == 'STUD') {
+                    $.ajax({
+                        url: baseUrl + "api/student/course/findClassroomInfo/" +
+                            _this.classRoomId,
+                        dataType: 'json',
+                        type: 'GET',
+                        headers: {
+                            token: _this.token
+                        },
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function (result) {
+                            console.log(result.body);
+                            _this.classRoomInfo = result.body;
+                            _this.classRoomInfo = JSON.parse(JSON.stringify(result.body));
+                            _this.type = _this.classRoomInfo.statused;
+
+                            _this.studJoinUrl = _this.classRoomInfo.studentJoinUrl;
+
+                            // _this.endTime = _this.classRoomInfo.endTime.split(' ')[1];
+                            if (_this.classRoomInfo.teacThumb == null) {
+                                _this.classRoomInfo.teacThumb = './images/logo.png'
+                            }
+                            if (_this.classRoomInfo.teacName == null) {
+                                _this.classRoomInfo.teacName = '万能班长'
+                            }
+                        },
+                        error: function (error) {
+
+                        },
+                    });
+                } else if (_this.status == 'TEAC') {
+                    $.ajax({
+                        url: baseUrl + "api/teacher/classRoom/findClassroomInfo/" +
+                            _this.classRoomId,
+                        dataType: 'json',
+                        type: 'GET',
+                        headers: {
+                            token: _this.token
+                        },
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function (result) {
+                            console.log(result.body);
+                            _this.classRoomInfo = result.body;
+                            _this.classRoomInfo = JSON.parse(JSON.stringify(result.body));
+                            _this.type = _this.classRoomInfo.statused;
+
+                            _this.studJoinUrl = _this.classRoomInfo.studentJoinUrl;
+
+                            // _this.endTime = _this.classRoomInfo.endTime.split(' ')[1];
+                            if (_this.classRoomInfo.teacThumb == null) {
+                                _this.classRoomInfo.teacThumb = './images/logo.png'
+                            }
+                            if (_this.classRoomInfo.teacName == null) {
+                                _this.classRoomInfo.teacName = '万能班长'
+                            }
+                        },
+                        error: function (error) {
+
+                        },
+                    });
+                } else if (_this.status == 'SELL') {
+                    $.ajax({
+                        url: baseUrl + "crm/sys/seller/order/findClassroomInfo/" +
+                            _this.classRoomId,
+                        dataType: 'json',
+                        type: 'GET',
+                        headers: {
+                            token: _this.token
+                        },
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function (result) {
+                            console.log(result.body);
+                            _this.classRoomInfo = result.body;
+                            _this.classRoomInfo = JSON.parse(JSON.stringify(result.body));
+                            _this.type = _this.classRoomInfo.statused;
+
+                            _this.studJoinUrl = _this.classRoomInfo.studentJoinUrl;
+
+                            // _this.endTime = _this.classRoomInfo.endTime.split(' ')[1];
+                            if (_this.classRoomInfo.teacThumb == null) {
+                                _this.classRoomInfo.teacThumb = './images/logo.png'
+                            }
+                            if (_this.classRoomInfo.teacName == null) {
+                                _this.classRoomInfo.teacName = '万能班长'
+                            }
+                        },
+                        error: function (error) {
+
+                        },
+                    });
+                }
+
+            }
+        },
+        mounted: function () {
+            this.getUrlData();
+            this.getClassRoomInfo();
+        }
+    });
+</script>

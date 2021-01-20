@@ -1,0 +1,141 @@
+.plan {
+    background: #E05623;
+}
+
+.plan_content { 
+    width: 100%;
+    background-image: url(../image/plan/plan_background@2x.png);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 头部 大图 */
+.plan_bann { 
+    width: 100%;
+    height: 3.3rem; 
+    margin-bottom: 18px;
+}
+.plan_bann img { 
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 主体介绍 */
+.plan_main { 
+    width: 3.51rem;
+    overflow: hidden;
+    margin: 0 auto;
+}
+/* 统一宽和外边距 */
+.plan_success,.plan_what,.plan_bg,.plan_process,.plan_provideo,.plan_bottom { 
+    width: 100%;
+    margin-bottom: 18px;
+}
+/* 统一img */
+.plan_success img,.plan_what img,.plan_bg img,.plan_process img,.swiper-slide img{ 
+    width: 100%;
+    height: 100%;
+}
+
+.plan_success { 
+    height: 5.04rem;
+}
+
+/* 起航计划 */
+.plan_what{ 
+    height: 3.88rem;
+}
+
+/* 特点 */
+.plan_bg {
+    height: 4rem;
+    position: relative;
+}
+.plan_bg img {
+    width: 100%;
+    height: 100%;
+}
+/* 调整swiper各项宽高 */
+.plan_bg .swiper-container {
+    width: 100%;
+    height: 3.18rem;
+    position: absolute;
+    top: 0.55rem;
+}
+.plan_bg .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.14rem;
+}
+.plan_bg .swiper-slide img {
+    width: 1.2rem;
+    height: 1.2rem;
+    display: block;
+}
+.plan_bg .swiper-slide:nth-child(3) img,.plan_bg .swiper-slide:nth-child(5) img {
+    margin-top: 0.2rem;
+}
+.plan_bg .swiper-slide p {
+    font-size: 0.16rem;
+    color:#E35D2B;
+    margin: 0.15rem;
+    font-weight: 500;   
+}
+.plan_bg .swiper-slide span {
+    width: 2.8rem;
+    line-height: 0.23rem;
+    color: #333;
+}
+.plan_bg .swiper-button-next,.plan_bg .swiper-button-prev {
+    width: 0.12rem;
+    height: 0.2rem;
+    top: 34%;
+}
+.plan_bg .swiper-container > div:nth-child(2){
+    background: url(../image/plan/plan_right.png);
+    background-size: 100%;
+    right: 23%;
+}
+.plan_bg .swiper-container > div:nth-child(3) {
+    background: url(../image/plan/plan_left.png);
+    background-size: 100%;
+    left: 23%;
+}
+
+
+/* 服务流程 */
+.plan_process {
+    height: 5.13rem;
+}
+
+/* 轮播 */
+.plan_provideo { 
+    height: 5.28rem;
+}
+.swiper-container { 
+    height: 100%;
+} 
+.swiper-slide img {
+    height: 100%;
+}
+/* 修改点的位置 */
+body .plan_provideo .swiper-container-horizontal>.swiper-pagination-bullets{
+    bottom: 0.1rem;
+}
+/* 修改 swiper点的颜色*/
+.plan_provideo .swiper-pagination-bullet-active {
+    background:#FB7653;
+}
+
+/* 底部 */
+.plan_bottom {
+    height: 2.59rem;
+    position: relative;
+    background-image: url(../image/plan/plan_bottom@2x.png);
+    background-size: 100% 100%;
+}
+

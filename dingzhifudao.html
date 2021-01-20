@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定制辅导</title>
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+</head>
+<style>
+    html, body{
+        height: 100%; 
+    }
+    body {
+        margin: 0;
+        /* position:fixed; */
+        width:100%;
+        height:100%
+    }
+
+    #mian {
+        width: 100%;
+        height: 100%; 
+    }
+    .bgimg{
+        width:100%;
+        margin: 0;
+        padding: 0;
+        vertical-align:bottom; 
+        display:block
+    }
+    *{
+        
+    }
+</style>
+<body>
+    <div id="mian">
+        <img class="bgimg" src="./images/1.png" alt="">
+        <img class="bgimg" src="./images/2.png" alt="">
+        <img class="bgimg" src="./images/3.png" alt="">
+        <img class="bgimg" src="./images/4.png" alt="">
+    </div>
+</body>
+</html>
+<script src="./js/jquery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="./js/base.js"></script>
+
+<script>
+    $(function(){
+
+    });
+    var vm = new Vue({
+        el:'#mian',
+        data:{
+            
+        },
+        methods:{
+
+        },
+        mounted:function(){
+
+        }
+    });
+</script>

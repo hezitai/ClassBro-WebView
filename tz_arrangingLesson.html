@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>排课通知</title>
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+    <link href="https://cdn.bootcss.com/animate.css/3.7.0/animate.css" rel="stylesheet">
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    #mian {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        /* width: 100%; */
+        /* overflow: hidden; */
+        font-family: '微软雅黑';
+        /* position: fixed; */
+        /*width:100%;*/
+        /* height: 100% */
+        /*overflow-x: hidden;*/
+    }
+
+    #main {
+        width: 100%;
+        background: #fff;
+        /* overflow-x: hidden;
+        position: relative; */
+    }
+
+    .main-bkg {
+        width: 100%;
+        min-height: 52.9rem;
+        background-size: 100% 100%;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    .main-bkg-cancel {
+        width: 100%;
+        min-height: 52.9rem;
+        background-size: 100% 100%;
+        position: relative;
+        overflow-x: hidden;
+        background: url("./images/quxiaobg.png") no-repeat center center;
+    }
+
+    .bkg3 {
+        background: url("./images/paike.png") no-repeat center center;
+        background-size: 100% 100%;
+        height: 52.9rem;
+        width: 100%;
+    }
+
+    .content {
+        position: absolute;
+        width: 100%;
+        top: 20rem;
+        z-index: 999;
+    }
+
+    .alert-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        /* padding-left: 7.8rem; */
+        /* padding-right:7rem; */
+        text-align: center;
+        /* width: 17rem; */
+        margin: 1rem 0;
+    }
+
+    .main-button {
+        border: .1rem solid #362609;
+        border-radius: 1rem;
+        background: #FFB200;
+        text-align: center;
+        /* line-height: ; */
+        margin: .5rem 4rem 0 4rem;
+        width: 22rem;
+        height: 3rem;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: #fff;
+    }
+
+    .main-no-button {
+        border: .1rem solid #362609;
+        border-radius: 1rem;
+        background: #fff;
+        text-align: center;
+        /* line-height: ; */
+        border: 1px solid #666;
+        margin: 0rem 4rem 0 4rem;
+        width: 22rem;
+        height: 3rem;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: #666;
+    }
+
+    .tips-title {
+        color: #555;
+        font-size: .6rem;
+        /* padding: 0 6rem; */
+        text-align: center;
+        margin: 1rem 0 1rem 0;
+    }
+
+    .whiteBoread-box {
+        background: url("./images/whiteBoread.png") no-repeat center center;
+        background-size: 100% 100%;
+        min-height: 12rem;
+        margin: 0 4rem 1rem 4rem;
+        position: relative;
+    }
+
+    .whiteBoread-box p {
+        /* text-align: center; */
+        padding-left: 3.2rem;
+    }
+
+    .class-title {
+        padding-top: 2rem;
+        font-size: 1rem;
+        font-weight: 550;
+        padding-left: .8rem;
+        padding-right: .8rem;
+        margin-bottom: .4rem;
+    }
+
+    .class-info {
+        color: #555;
+        padding-left: .8rem;
+        padding-right: .8rem;
+        margin: 0;
+        /* text-align: left!important; */
+        font-size: .8rem;
+    }
+
+    .class-time {
+        position: absolute;
+        right: 2rem;
+        bottom: 2.5rem;
+    }
+
+    .class-teacher img {
+        width: 1.5rem;
+        height: 1.5rem;
+        /* background: #555; */
+        border-radius: 50%;
+        vertical-align: middle;
+        border: .009rem solid #666;
+        margin-right: .5rem;
+    }
+
+    .class-teacher {
+        position: absolute;
+        right: 2rem;
+        bottom: .6rem;
+    }
+
+    .class-mask {
+        width: 100%;
+        height: 7rem;
+    }
+
+    .main-confirm {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 20rem;
+        height: 10rem;
+        background: rgba(255, 255, 255, 1);
+        z-index: 9999;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        align-content: space-between;
+
+    }
+
+    .mask {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 999;
+    }
+</style>
+
+<body>
+    <div id="main" v-cloak>
+        <div class="main-bkg">
+            <div class="bkg3"></div>
+            <div class="content">
+                <p class="alert-title">
+                    <span style="display:block">{{classRoomInfo.teacName}}{{titleConfirm1}}</span>
+                    <span style="display:block">{{classRoomInfo.name}}{{titleConfirm2}}</span>
+                </p>
+                <div class="whiteBoread-box">
+                    <p class="class-title">* {{classRoomInfo.name}} *</p>
+                    <p class="class-info"> {{classRoomInfo.description}} </p>
+                    <div class="class-mask"></div>
+                    <p class="class-time">{{classRoomInfo.startTime}}-{{endTime}}</p>
+                    <p class="class-teacher"><img :src='classRoomInfo.teacThumb' alt="">{{classRoomInfo.teacName}}
+                    </p>
+                </div>
+                <div v-show='status == "STUD"'>
+                    <button class="main-button" v-if='type == 1' @click='btnEvent'>确认排课</button>
+                    <button class="main-button" v-if='type != 1'>已确认排课</button>
+                    <p class="tips-title">请确认好课堂时间，并在规定时间内进入课堂上课</p>
+                    <button class="main-no-button" @click='rejectClass' v-if='type == 1'>拒绝排课</button>
+                </div>
+                <div v-show='status == "TEAC"'>
+                    <button class="main-button" v-if='type != 1'>已确认排课</button>
+                    <p class="tips-title">请确认好课堂时间，并在规定时间内进入课堂上课</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="mask">
+
+        </div>
+        <div class="main-confirm animated slideInDown">
+            <p>提示</p>
+            <p style="font-size:1.4rem;color:#000;margin-top: 0;">确认拒绝排课？</p>
+            <div style="display:flex;justify-content:space-between;width: 100%;">
+                <button @click='cancelBtn'
+                    style="border:none;width:50%;height: 3rem;border-top:1px solid #333;border-right:1px solid #333; font-size: 1.6rem;background:rgba(0,0,0,0);color:#409EFF">
+                    取消
+                </button>
+                <button @click='confirmCancel'
+                    style="border:none;width:50%;height: 3rem;border-top:1px solid #333; font-size: 1.6rem;background:rgba(0,0,0,0);color:#F56C6C">
+                    确认
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="./js/base.js"></script>
+
+<script>
+    var vm = new Vue({
+        el: '#main',
+        data: {
+            type: 0,
+            token: '',
+            classRoomId: '',
+            classRoomInfo: {},
+            endTime: '',
+            status: '',
+            title: '',
+            titleConfirm1: '讲师已经为课程',
+            titleConfirm2: '排课了',
+            disabled: false,
+            studJoinUrl: '',
+        },
+        methods: {
+            getUrlData: function () {
+                getUrlStr = function (name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]);
+                    return null;
+                };
+                // this.token = window.location.href.split('?')[1].split('&')[0];
+                // this.classRoomId = window.location.href.split('?')[1].split('&')[1];
+                // this.status = window.location.href.split('?')[1].split('&')[2];
+                this.token = getUrlStr('token');
+                this.classRoomId = getUrlStr('id');
+                this.status = getUrlStr('status');
+                if (this.token === null || this.classRoomId === null || this.status === null) {
+                    this.token = window.location.href.split('?')[1].split('&')[0];
+                    this.classRoomId = window.location.href.split('?')[1].split('&')[1];
+                    this.status = window.location.href.split('?')[1].split('&')[2];
+                }
+            },
+            goClass: function () {
+                window.nativeInterface.executeMethod('s1');
+            },
+
+            btnEvent: function (event) {
+                var _this = this;
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    url: baseUrl + "api/student/course/positiveClassroom?classroomId=" + _this
+                        .classRoomId,
+                    headers: {
+                        token: _this.token,
+                    },
+                    success: function (r) {
+                        if (r.status == 200) {
+                            alert('确认成功');
+                            _this.getClassRoomInfo();
+                        } else {
+                            alert(r.body.msg);
+                        }
+                    }
+                });
+            },
+            rejectClass: function () {
+                $('.mask').show();
+                $('.main-confirm').show();
+
+            },
+            cancelBtn: function () {
+                $('.mask').hide();
+                $('.main-confirm').hide();
+            },
+            confirmCancel: function () {
+                var _this = this;
+                $.ajax({
+                    url: baseUrl + 'api/student/course/studRefuseClassroom',
+                    // url:'http://192.168.1.113/api/student/course/studRefuseClassroom',
+                    type: 'GET',
+                    data: {
+                        token: this.token,
+                        classroomId: this.classRoomId,
+                    },
+                    success: function (r) {
+                        console.log(r);
+                        _this.getClassRoomInfo();
+                        $('.mask').hide();
+                        $('.main-confirm').hide();
+                        alert('取消成功');
+                    }
+                })
+            },
+            getClassRoomInfo: function () { //获取课堂信息
+                $('.mask').hide();
+                $('.main-confirm').hide();
+                var _this = this;
+                if (_this.status == 'STUD') {
+                    $.ajax({
+                        url: baseUrl + "api/student/course/findClassroomInfo/" +
+                            _this.classRoomId,
+                        dataType: 'json',
+                        type: 'GET',
+                        headers: {
+                            token: _this.token
+                        },
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function (result) {
+                            _this.classRoomInfo = result.body;
+                            _this.classRoomInfo.startTime = _this.classRoomInfo.startTime.split(
+                                ':')[0] + ":" + _this.classRoomInfo.startTime.split(':')[1];
+                            _this.classRoomInfo = JSON.parse(JSON.stringify(result.body));
+                            _this.type = _this.classRoomInfo.statused;
+                            // _this.classRoomInfo.endTime.split(' ')[1] + 
+                            _this.endTime = _this.classRoomInfo.endTime.split(' ')[1].split(
+                                ':')[0] + ":" + _this.classRoomInfo.endTime.split(' ')[1].split(
+                                    ':')[1];
+                            if (_this.classRoomInfo.teacThumb == null) {
+                                _this.classRoomInfo.teacThumb = './images/logo.png'
+                            }
+                            if (_this.classRoomInfo.teacName == null) {
+                                _this.classRoomInfo.teacName = '万能班长'
+                            }
+                        },
+                        error: function (error) {
+
+                        },
+                    });
+                } else if (_this.status == 'TEAC') {
+                    $.ajax({
+                        url: baseUrl + "api/teacher/classRoom/findClassroomInfo/" +
+                            _this.classRoomId,
+                        dataType: 'json',
+                        type: 'GET',
+                        headers: {
+                            token: _this.token
+                        },
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function (result) {
+                            console.log(result.body);
+                            _this.classRoomInfo = result.body;
+                            _this.classRoomInfo = JSON.parse(JSON.stringify(result.body));
+                            _this.type = _this.classRoomInfo.statused;
+                            _this.endTime = _this.classRoomInfo.endTime.split(' ')[1];
+                            if (_this.classRoomInfo.teacThumb == null) {
+                                _this.classRoomInfo.teacThumb = './images/logo.png'
+                            }
+                            if (_this.classRoomInfo.teacName == null) {
+                                _this.classRoomInfo.teacName = '万能班长'
+                            }
+                        },
+                        error: function (error) {
+
+                        },
+                    });
+                } else if (_this.status == 'SELL') {
+                    $.ajax({
+                        url: baseUrl + "crm/sys/seller/order/findClassroomInfo/" +
+                            _this.classRoomId,
+                        dataType: 'json',
+                        type: 'GET',
+                        headers: {
+                            token: _this.token
+                        },
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function (result) {
+                            console.log(result.body);
+                            _this.classRoomInfo = result.body;
+                            _this.classRoomInfo = JSON.parse(JSON.stringify(result.body));
+                            _this.type = _this.classRoomInfo.statused;
+                            _this.endTime = _this.classRoomInfo.endTime.split(' ')[1];
+                            if (_this.classRoomInfo.teacThumb == null) {
+                                _this.classRoomInfo.teacThumb = './images/logo.png'
+                            }
+                            if (_this.classRoomInfo.teacName == null) {
+                                _this.classRoomInfo.teacName = '万能班长'
+                            }
+                        },
+                        error: function (error) {
+
+                        },
+                    });
+                }
+            }
+        },
+        mounted: function () {
+            this.getUrlData();
+            this.getClassRoomInfo();
+            $('.main-confirm').hide();
+        }
+    });
+    $(function () {
+        $('.main-confirm').hide();
+    })
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./css/paper.css" />   
+    <!-- 动态计算px-rem转换 -->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+                    docEl.getElementsByTagName("body")[0].style.fontSize = docEl.style.fontSize;
+                };
+    
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+    <title>论文辅导</title>
+</head>
+<body>
+    <div class="paper">
+        <div class="paper_header"></div>  
+
+        <!-- tab点击切换 -->
+        <div class="paper_con">
+            <ul>
+                <li class="con_li">论文辅导</li>
+                <li>大论文辅导</li>
+            </ul>
+            <div class="list">
+                <div class="paper_list">
+                    <img src="./image/paper/paper_state2@2x.png" />
+                </div>
+                <div>
+                    <img src="./image/paper/paper_state3@2x.png" />
+                    <!-- 展示与收起 按钮 -->
+                    <div class="paper_show">
+                        <img src="./image/paper/paper_open@2x.png" />
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <!-- 底部-咨询 -->
+        <div class="paper_footer fo_btn">
+            <img src="./image/paper/paper_Click@2x.png" />
+        </div>
+    </div>
+</body>
+<script src="./js/jquery.js"></script>
+<script src="./js/style.js"></script>
+<script src="./js/paper.js"></script>
+</html>

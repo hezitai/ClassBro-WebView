@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./css/findDetail.css" /> 
+    <!-- 动态计算px-rem转换 -->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+                    docEl.getElementsByTagName("body")[0].style.fontSize = docEl.style.fontSize;
+                };
+    
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+    <title>留学资讯-详情页</title>
+</head>
+<body>
+    <div class="findDetail">
+        <!-- active居中效果 -->
+        <div class="findDe_active">
+        </div>  
+        
+        <!-- <div class="findDe_footer">
+            <span id="foo_sp0"> <img src="./image/findDetail/audition_like1@2x.png" /><i>点赞</i></span>
+            <span id="foo_sp1"> <img src="./image/findDetail/audition_collection2@2x.png" /> <i>收藏</i></span>
+            <span id="foo_sp2"> <img src="./image/findDetail/audition_forwarding@2x.png" />转发</span>
+        </div> -->
+    </div>
+</body>
+<script src="./js/jquery.js"></script>
+<script src="./js/style.js"></script>
+<script src="./js/findDetail.js"></script>
+</html>

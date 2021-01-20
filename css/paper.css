@@ -1,0 +1,81 @@
+/* 头部 */
+.paper_header {
+    width: 100%;
+    height: 21.9rem;
+    background-image: url(../image/paper/paper_background@2x.png);
+    background-size: 100%;
+}
+
+/* 内容 tab切换 */
+.paper_con,.paper_con ul{ 
+    width : 100%;
+    overflow: hidden;
+}
+
+.paper_con ul li {
+    float: left;
+    width: 50%;
+    font : 0.18rem/0.6rem FZLTCHK--GBK1-0;
+    color: #fff;
+    text-align: center;
+}
+.paper_con li {
+    background: #6b93ff;
+}
+.paper_con .con_li { 
+    background: #bec4fe;
+}
+
+/* tab内容 利用display控制内容 展示与隐藏*/
+.list {
+    width: 100%;
+    position: relative;
+}
+.list img {
+    width: 100%;
+    height: 100%;
+}
+.list>div { 
+    display: none;
+}
+.list .paper_list {
+    display: block;
+}
+
+/* 展示与收起 */
+.list>div:nth-child(2) {
+    position: relative;
+}
+.paper_show {
+    width: 0.25rem;
+    height: 0.37rem;
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.paper_show img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 底部-咨询 */
+.paper_footer {
+    width: 1.86rem;
+    height: 1rem;
+    margin: 0 auto;
+    position: relative;
+}
+.paper_footer img {
+    display: block;
+    width: 100%;
+    height: 0.44rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}

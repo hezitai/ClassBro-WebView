@@ -1,0 +1,162 @@
+
+/* 内容整体 */
+.text { 
+    display: block;
+    width: 100%;;
+    margin: auto;
+    background-image: url(../image/text/text_bg@2x.png);
+}
+
+/* 居中父元素设置 */
+.con_father { 
+    width: 3.52rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* content 上半部  */
+.text_banner {
+    width : 100%;
+    height: 3.48rem;  
+    background-image: url(../image/text/text_banner@2x.png);
+    background-size: 100% 100%;
+}
+/* content 中部 */
+.text_back {
+    width: 100%;
+    height: 15.08rem;
+    background-image: url(../image/text/text_back@2x.png);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 轮播 */
+body .text_back .swiper-container { 
+    height: 1.8rem;
+}
+
+body .text_back .swiper-wrapper {
+    height: 1.66rem;
+}
+body .text_back .swiper-slide { 
+    height: 1.66rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+body .text_back .swiper-slide img{ 
+    width : 45%;
+    height: 100%;
+}
+
+/* 服务 */
+#text_tutor { 
+    width : 2.88rem;
+    margin: 0 auto;
+}
+#text_tutor dl {
+    width : 100%;
+    /* height: 100%; */
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.1rem;
+}
+#text_tutor dl dt { 
+    width : 0.76rem;
+    height : 0.99rem;
+    margin-bottom: 0.1rem;
+    position: relative;
+}
+#text_tutor dl:nth-child(1) dt img {
+    width : 100%;
+    height: 100%;
+    position: absolute;
+    top: -0.13rem;
+}
+#text_tutor dl dt img {
+    width : 100%;
+    height: 100%;
+}
+#text_tutor dl dd {
+    width: 1.96rem;
+    height: 0.8rem;
+    color: #474F54;
+}
+
+.text_back #text_tutor dl dd h4 { 
+    margin-bottom: 0.07rem;
+    font-size : 0.16rem; 
+}
+.text_back #text_tutor dl dd p { 
+    font-size: 0.14rem;
+}
+
+/* 亮点 */
+.text_service { 
+    width: 3.12rem;
+    height: 2.8rem;
+    margin: 0 auto;
+}
+.text_service img {
+    width: 100%;
+    height: 100%;
+}
+
+.text_introduce { 
+    width: 3.12rem;
+    height: 2.47rem;
+}
+.text_introduce img {
+    width: 100%;
+    height: 100%;
+}
+
+/* 中下-banner */
+body .test_case .swiper-container { 
+    height: 7.98rem;
+}
+.test_back .swiper-wrapper {
+    height: 7.68rem;
+}
+body .text_case>.swiper-container-horizontal>.swiper-pagination-bullets{
+    bottom: -0.3rem;
+}
+
+
+/* content 底部 */
+.text_private { 
+    width: 100%;
+    height: 4.12rem;
+    margin: 0.16rem auto 0.6rem;
+    position: relative;
+}
+.text_private img {
+    width : 100%;
+    height: 100%;
+}
+
+
+/* 通用 */
+
+/* 字体 */
+.con_p {
+    text-align: center;
+    margin: 0.16rem 0 ;
+    font-family: "微软雅黑";
+    font-size: 0.2rem;
+    color: #474F54;
+}
+
+/* 虚线 */
+.line { 
+    width: 95%;
+    height : 0.04rem;
+    margin : 0.16rem auto 0 ;
+    background-image: url(../image/text/Line@2x.png);
+    background-size : 100% 100%;
+}

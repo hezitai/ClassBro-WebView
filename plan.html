@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./css/plan.css" /> 
+    <link rel="stylesheet" type="text/css" href="./css/swiper-4.3.3.min.css" />     
+    <!-- 动态计算px-rem转换 -->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+                    docEl.getElementsByTagName("body")[0].style.fontSize = docEl.style.fontSize;
+                };
+    
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+    <title>启航计划</title>
+</head>
+<body>
+    <div class="plan">
+        <!-- 头部 大图 -->
+        <div class="plan_bann">
+            <img src="./image/plan/plan_banner@2x.png" />
+        </div>
+        <!-- 主体介绍 -->
+        <div class="plan_main">
+
+            <div class="plan_success">
+                <img src="./image/plan/plan_success@2x.png" />
+            </div>
+            <!-- 起航计划 -->
+            <div class="plan_what">
+                <img src="./image/plan/plan_what@2x.png" />
+            </div>
+            <!-- 特点 -->
+            <div class="plan_bg">
+                <img src="./image/plan/plan_bg@2x.png" />
+                <div class="swiper-container" id="swiper1">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="./image/plan/plan_pic5@2x.png" />
+                            <p>留学私人管家服务</p>
+                            <span>万能班长为每位学生分配最贴心的专属留学管家，根据实际情况，为学生提供全天候的生活、学习、安全及心理咨询服务。家长也可以通过万能班长的平台随时和专属管家沟通，时刻了解学生动态。</span>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./image/plan/plan_pic4@2x.png" />
+                            <p>1v1辅导，学业无忧</p>
+                            <span>万能班长代替家长为留学生在海外建立起了一道安全屏障，指导留学生处理海外突发事件，提升学 生留学过程中的安全性。同时万能班长会定期与家长交流，分享学生在海外的生活、学习情况。</span>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./image/plan/plan_pic3@2x.png" />
+                            <p>360°留学服务链</p>
+                            <span>万能班长通过整合优质的海外资源及经验，不仅仅是在学习上为留学生提供助力，更能成为留学生 在生活上的好帮手。通过万能班长的海外平台，甚至能为学生提供宝贵的课外实践及名企实习机会， 极大地丰富了学生的阅历，为未来的深造或求职打下基础。</span>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./image/plan/plan_pic2@2x.png" />
+                            <p>贴心安全保障服务</p>
+                            <span>万能班长代替家长为留学生在海外建立起了一道安全屏障，指导留学生处理海外突发事件，提升学 生留学过程中的安全性。同时万能班长会定期与家长交流，分享学生在海外的生活、学习情况。</span>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./image/plan/plan_pic1@2x.png" />
+                            <p>全球顶尖教育资源</p>
+                            <span>万能班长创办至今，已经服务超过3万名留学生。同时我们拥有顶尖的教学团队，成员人数 超过300人，且所有师资人员均来自国内外各大名校。我们始终保证站在留学教育事业的风口浪 尖，始终坚持优质的教学服务，帮助广大留学生取得优异成绩，顺利毕业。</span>
+                        </div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <!-- 服务流程 -->
+            <div class="plan_process">
+                <img src="./image/plan/plan_process@2x.png" />
+            </div>
+            <!-- 轮播，提供 -->
+            <div class="plan_provideo">
+                <div class="swiper-container" id="swiper2">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="./image/plan/plan_provide1@2x.png" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./image/plan/plan_provide2@2x.png" />                        
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./image/plan/plan_provide3@2x.png" />                        
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <!-- 底部 -->
+            <div class="plan_bottom">
+                <div class="btn fo_btn" >点击咨询</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./js/swiper.min.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/style.js"></script>
+<script src="./js/plan.js"></script>
+</html>

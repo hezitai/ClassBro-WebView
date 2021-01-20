@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./css/find.css" /> 
+    <!-- 动态计算px-rem转换 -->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+                    docEl.getElementsByTagName("body")[0].style.fontSize = docEl.style.fontSize;
+                };
+    
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+    <title>留学资讯</title>
+</head>
+<body>
+    <div class="find">
+        <!-- tab切换 -->
+        <div>
+            <div class="find_active">
+                <ul class="find_content_hd">
+                    <li class="hd_active" data-id="">全部</li>
+                </ul>              
+            </div>
+        </div>
+
+        <!-- 内容 -->
+        <div class="find_content">           
+            <!-- a.内容展示 -->        
+            <div class="content_Bou"></div>
+
+            <!-- c.加载更多 -->
+            <div class="content_btn">加载更多</div>
+        </div>
+
+        <!-- 尾 -->
+        <div class="find_footer">
+            <span data-id="1">干货推荐</span>
+            <span class="find_footer_active" data-id="2">热门资讯</span>
+            <span data-id="3">热点新闻</span>            
+        </div>  
+    </div>
+</body>
+<script src="./js/jquery.js"></script>
+<script src="./js/style.js"></script>
+<script src="./js/findFoot2.js"></script>
+</head>
+</html>

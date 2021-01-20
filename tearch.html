@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./css/tearch.css" />   
+    <!-- 动态计算px-rem转换 -->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+                    docEl.getElementsByTagName("body")[0].style.fontSize = docEl.style.fontSize;
+                };
+    
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+    <title>师资</title>
+</head>
+<style>
+    .flex{
+        display: flex;
+        justify-content:space-between;
+    }
+</style>
+<body>
+    <div class="tearch">
+        <!-- 头部 -->
+        <div class="tear_header">
+            <img src="./image/tearch/teacher_banner@2x.png" />
+        </div>
+        <!-- 班长师资选拔 -->
+        <div class="tear_selection">
+            <img src="./image/tearch/teacher_selection@2x.png" />
+        </div>
+        <!-- 金牌讲师1 -->
+        <div class="tear_linda">
+            <img src="./images/teacher1.png" />
+        </div>
+
+        <div class="tear_jackie">
+            <img src="./images/teacher2.png" />
+        </div>
+
+        <!-- 讲师2 -->
+        <div class="tear_one">
+            <div class="flex"><img src="./images/teacher3.png" /><img src="./images/teacher4.png" /></div>
+            <div class="flex"><img src="./images/teacher5.png" /></div>
+            <!-- <div class="flex"></div> -->
+        </div>
+        <!-- 底部 -->
+        <div class="tear_bottom">
+            <img src="./image/tearch/teacher_bottom@2x.png" />
+        </div>
+    </div>
+</body>
+</html>

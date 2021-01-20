@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>任你学</title>
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+</head>
+<style>
+    ul,
+    li {
+        list-style: none;
+    }
+
+    #mian {
+        width: 100%;
+        font-family: '微软雅黑';
+    }
+
+    ul {
+        padding: 0 1rem;
+    }
+
+    li {
+        border-bottom: 1px solid #F0F0F0;
+        position: relative;
+    }
+
+    li p {
+        font-size: 1.1rem;
+    }
+
+    .right-text {
+        position: absolute;
+        right: 0rem;
+        top: -1rem;
+        width: 10rem;
+        text-align: right;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>
+
+<body>
+    <div id="mian">
+        <ul>
+            <!-- <li>
+                <p>课件类型</p><p class="right-text">课件名称</p>
+            </li> -->
+            <li v-for='item in list'>
+                <p>{{item.groupName}}</p>
+                <p class="right-text" :title='item.name'>{{item.name}}</p>
+            </li>
+            <p v-if='list.length == 0' style="text-align:center;">{{loadingText}}</p>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="./js/base.js"></script>
+
+<script>
+    $(function () {
+
+    });
+    var vm = new Vue({
+        el: '#mian',
+        data: {
+            list: {},
+            token: '',
+            loadingText: '加载中......',
+            courseId: '',
+        },
+        methods: {
+            getUrlData: function () {
+                // this.token = window.location.href.split('?')[1].split('&')[0];
+                // this.courseId = window.location.href.split('?')[1].split('&')[1];
+                getUrlStr = function (name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]);
+                    return null;
+                };
+
+                this.token = getUrlStr('token');
+                this.courseId = getUrlStr('id');
+                if (this.token === null || this.courseId === null) {
+                    this.token = window.location.href.split('?')[1].split('&')[0];
+                    this.courseId = window.location.href.split('?')[1].split('&')[1];
+                }
+                // this.status = getUrlStr('status');
+            },
+            getList: function () {
+                var _this = this;
+                $.ajax({
+                    //1078
+                    url: baseUrl + "api/student/courseware/list",
+                    dataType: 'jsonp',
+                    data: {
+                        cdId: _this.courseId,
+                        page: 1,
+                        limit: 1000
+                    },
+                    type: 'GET',
+                    headers: {
+                        token: _this.token
+                    },
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function (result) {
+                        _this.list = result.body.list;
+                        if (_this.list.length == 0) {
+                            _this.loadingText = '暂无课件信息';
+                        };
+                        // console.log(_this.list);
+
+                    },
+                    error: function (error) {
+
+                    },
+                });
+            },
+        },
+        mounted: function () {
+            this.getUrlData();
+            this.getList();
+        }
+    });
+</script>

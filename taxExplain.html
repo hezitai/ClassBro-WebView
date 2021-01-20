@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>代扣代缴劳务报酬税证明</title>
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        /* position:fixed; */
+        width: 100%;
+        height: 100%
+    }
+
+    #mian {
+        width: 100%;
+        height: 100%;
+    }
+
+    h2 {
+        text-align: center;
+        padding-top: 3rem;
+    }
+
+    .content {
+        padding: 1rem 3rem 3rem 3rem;
+        line-height: 1.6rem;
+        letter-spacing: .18rem;
+    }
+
+    .underLine {
+        text-decoration: underline;
+    }
+
+    .textalignRight {
+        text-align: right;
+    }
+    .zhang{
+        width: 10rem;
+        height: 9rem;
+        position: absolute;
+        right: 1rem;top: 0rem;
+        z-index: -1;
+    }
+</style>
+
+<body>
+    <div id="mian">
+        <h2>代扣代缴劳务报酬税证明</h2>
+        <div class="content">
+            <p style="text-indent: 2.5rem">我单位兼职员工<span class="underLine"> 123123 </span>，已由我单位于<span class="underLine">
+                    1231 </span>年<span class="underLine"> 22 </span>月<span class="underLine"> 22 </span>日前代扣代缴<span
+                    class="underLine"> 1233 </span>年<span class="underLine"> 23 </span>月的劳务报酬所得税。
+            </p>
+            <p>收入总额：<span style="letter-spacing: 0rem;">12331</span> 元</p>
+            <p>实缴税额：<span style="letter-spacing: 0rem;">123123</span> 元</p>
+            <p>税后收入：<span style="letter-spacing: 0rem;">123123</span> 元</p>
+            <p>以上信息属实，真实有效。</p>
+            <div style="position: relative">
+                <p class="textalignRight" style="padding-top: 2rem;">单位全称：上海导毕教育科技有限公司</p>
+                <p class="textalignRight">日期：<span>123123</span></p>
+                <img class="zhang" src="https://classbro-oss.oss-cn-hongkong.aliyuncs.com/statice-resource/classbro-common-seal.png" alt="">
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="./js/base.js"></script>
+
+<script>
+    $(function () {
+
+    });
+    var vm = new Vue({
+        el: '#mian',
+        data() {
+            return {
+
+            }
+        },
+        methods: {
+
+        },
+        mounted: function () {
+
+        }
+    });
+</script>

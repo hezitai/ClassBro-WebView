@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>任你学</title>
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+</head>
+<style>
+    ul,
+    li {
+        list-style: none;
+    }
+
+    #mian {
+        width: 100%;
+        font-family: '微软雅黑';
+    }
+
+    ul {
+        padding: 0 1rem;
+    }
+
+    li {
+        border-bottom: 1px solid #F0F0F0;
+        position: relative;
+    }
+
+    li p {
+        font-size: 1.2rem;
+    }
+
+    .right-text {
+        position: absolute;
+        right: 0rem;
+        top: -1rem;
+    }
+
+    .button {
+        border-radius: 40px;
+        border: 2px solid #FB805F;
+        color: #FB805F;
+        background: #fff;
+        width: 6rem;
+        height: 2rem;
+        margin: 0;
+        text-align: center;
+        line-height: 2rem;
+        margin-top: .7rem;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div id="mian">
+        <ul>
+            <li>
+                <p>课程名称</p>
+                <p class="right-text">{{classInfo.courseName}}</p>
+            </li>
+            <li>
+                <p>课程代码</p>
+                <p class="right-text">{{classInfo.courseCode}}</p>
+            </li>
+            <li>
+                <p>订单类型</p>
+                <p class="right-text">{{type}}</p>
+            </li>
+            <li>
+                <p>课程总价</p>
+                <p class="right-text">{{classInfo.totalPrice}}{{classInfo.currency}}</p>
+            </li>
+            <li>
+                <p>课程单价</p>
+                <p class="right-text">{{classInfo.price}}</p>
+            </li>
+            <li>
+                <p>预计课时</p>
+                <p class="right-text">{{classInfo.scheduledTime}}</p>
+            </li>
+            <li>
+                <p>剩余系统赠送课时</p>
+                <p class="right-text">{{classInfo.persenterTime}}min</p>
+            </li>
+            <li>
+                <p>期望结束时间</p>
+                <p class="right-text">{{classInfo.endCourseTime}}</p>
+            </li>
+            <li>
+                <p>考试时间</p>
+                <p class="right-text">{{classInfo.examTime}}</p>
+            </li>
+            <li @click='toClassData'>
+                <p>课程教材</p>
+                <p class="right-text button">查看</p>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="./js/base.js"></script>
+
+<script>
+    $(function () {
+
+    });
+    var vm = new Vue({
+        el: '#mian',
+        data: {
+            type: 0,
+            token: '',
+            classRoomId: '',
+            classInfo: {},
+            type: '',
+            cdId: '',
+        },
+        methods: {
+            getUrlData: function () {
+                // this.token = window.location.href.split('?')[1].split('&')[0];
+                // this.classRoomId = window.location.href.split('?')[1].split('&')[1];
+                // this.type = window.location.href.split('?')[1].split('&')[2];
+                // console.log(this.token,this.classRoomId, this.type);
+                getUrlStr = function (name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]);
+                    return null;
+                };
+
+                this.token = getUrlStr('token');
+                this.classRoomId = getUrlStr('id');
+                this.type = getUrlStr('status');
+                if (this.token === null || this.classRoomId === null || this.type === null) {
+                    this.token = window.location.href.split('?')[1].split('&')[0];
+                    this.classRoomId = window.location.href.split('?')[1].split('&')[1];
+                    this.type = window.location.href.split('?')[1].split('&')[2];
+                }
+
+            },
+            toClassData: function () {
+                window.location.href = innerUrl + 'ClassBro_H5/classData.html?' + this.token + '&' + this
+                    .cdId;
+            },
+
+            getConfirm: function () {
+                var _this = this;
+                $.ajax({
+                    url: baseUrl + "api/student/course/findPurOrderInfo/" + _this.classRoomId,
+                    dataType: 'json',
+                    type: 'GET',
+                    headers: {
+                        token: _this.token
+                    },
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function (result) {
+                        _this.classInfo = result.body;
+                        console.log(_this.classInfo);
+                        // 0-定制辅导
+                        // 1-考前突击
+                        // 2-包课服务
+                        // 4-论文润色
+                        // 8-普通论文辅导
+                        // 16-论文大礼包
+                        // 32-特殊订单
+                        // 64-班课订单
+                        if (_this.classInfo.type == 0) {
+                            _this.type = '定制辅导';
+                        } else if (_this.classInfo.type == 1) {
+                            _this.type = '考前突击';
+                        } else if (_this.classInfo.type == 2) {
+                            _this.type = '包课服务';
+                        } else if (_this.classInfo.type == 4) {
+                            _this.type = '论文润色';
+                        } else if (_this.classInfo.type == 8) {
+                            _this.type = '普通论文辅导';
+                        } else if (_this.classInfo.type == 16) {
+                            _this.type = '论文大礼包';
+                        } else if (_this.classInfo.type == 32) {
+                            _this.type = '特殊订单';
+                        } else if (_this.classInfo.type == 64) {
+                            _this.type = '班课订单';
+                        }
+                        _this.cdId = _this.classInfo.courseId;
+                    },
+                    error: function (error) {
+
+                    },
+                });
+            },
+        },
+        mounted: function () {
+            this.getUrlData();
+            this.getConfirm();
+        }
+    });
+</script>

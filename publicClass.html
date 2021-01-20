@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <title>公开课</title> -->
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        /* position:fixed; */
+        width: 100%;
+        height: 100%
+    }
+
+    #mian {
+        width: 100%;
+        height: 100%;
+        /* background:#F7F7F7; */
+    }
+
+    .video-item {
+        width: 100%;
+        height: 16.8rem;
+    }
+
+    .video-item video {
+        width: 100%;
+        height: 100%;
+        background: #D8D8D8;
+    }
+
+    .class-intro {
+        width: 100%;
+        min-height: 8rem;
+        background: #fff;
+        /* margin-bottom: .8rem; */
+    }
+
+    .class-intro .class-title {
+        margin: 0;
+        padding: 1rem 1rem .2rem 1rem;
+        color: #333333;
+        font-size: 1.3rem;
+        font-weight: 600;
+        font-family: '微软雅黑';
+        margin-top: .5rem;
+    }
+
+    .class-intro .class-info {
+        margin: 0;
+        padding: .5rem 1rem;
+        color: #838383;
+        font-size: 1.1rem;
+        font-weight: 400;
+        font-family: '微软雅黑';
+    }
+
+    .intro-content {
+        padding: 0 1rem;
+        color: #838383;
+        font-size: 1.1rem;
+        line-height: 1.7rem;
+    }
+
+    .contant-item {
+        width: 100%;
+        height: 4rem;
+        border-top: 1px solid #ccc;
+        position: fixed;
+        bottom: 0;
+        background: #fff;
+    }
+
+    .contant-item button {
+        border-radius: 19px;
+        color: #fff;
+        background: #FB7600;
+        width: 8.5rem;
+        height: 2.5rem;
+        line-height: 2rem;
+        text-align: center;
+        border: none;
+        font-size: 1.1rem;
+        position: absolute;
+        right: .5rem;
+        top: .8rem;
+    }
+
+    ul,
+    li {
+        list-style: none;
+        padding: 0;
+    }
+
+    .about-item {
+        background: #fff;
+        padding-bottom: 4rem;
+        /* overflow-y: auto; */
+    }
+
+    .about-title {
+        margin: 0;
+        padding: 1rem;
+        color: #333333;
+        font-size: 1.3rem;
+        font-weight: 600;
+        font-family: '微软雅黑';
+    }
+
+    .li-item {
+        padding: 0 .5rem .5rem .5rem;
+        border-bottom: 1px solid #ccc;
+        margin: 0 1rem;
+    }
+
+    .li-item-text {
+        font-size: 1.1rem;
+    }
+
+    .about-item ul {
+        margin: 0;
+        overflow: auto;
+    }
+
+    .info-item {
+        padding: 0 1rem;
+        color: #838383;
+        font-size: 1.1rem;
+        line-height: 1.4rem;
+    }
+
+    video::-webkit-media-controls-mute-button {
+        display: none !important;
+    }
+</style>
+
+<body>
+    <div id="mian">
+        <div class="video-item">
+            <video :src="info.resUrl" controlsList="nodownload" autoplay="autoplay" webkit-playsinline="" playsinline=""
+                x5-playsinline="" x-webkit-airplay="allow" controls="controls" :poster='info.videoThumbnail'></video>
+        </div>
+        <div class="class-intro">
+            <p class="class-title">{{info.title}}</p>
+            <p class="class-info">{{info.subTitle}}</p>
+            <p class="class-info">授课老师：{{info.author}}</p>
+        </div>
+        <div style="height:.8rem;background:#F7F7F7">
+
+        </div>
+        <div class="about-item">
+            <p class="about-title">课堂简介</p>
+            <div class="info-item">
+                <span>{{info.description}}</span>
+            </div>
+        </div>
+
+        <div class="contant-item">
+            <button @click='contantNative'>我要咨询</button>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="./js/base.js"></script>
+
+<script>
+    $(function () {
+
+    });
+    var vm = new Vue({
+        el: '#mian',
+        data: {
+            notIncludeId: null,
+            professId: null,
+            info: {},
+        },
+        methods: {
+            getInfo: function () {
+                var _this = this;
+                // _this.notIncludeId = window.location.href.split('?')[1].split('&')[0];
+                // _this.professId = window.location.href.split('?')[1].split('&')[1];
+                getUrlStr = function (name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]);
+                    return null;
+                };
+
+                this.notIncludeId = getUrlStr('id');
+                this.professId = getUrlStr('professId');
+                if (this.notIncludeId === null || this.professId === null) {
+                    _this.notIncludeId = window.location.href.split('?')[1].split('&')[0];
+                    _this.professId = window.location.href.split('?')[1].split('&')[1];
+                }
+                $.ajax({
+                    url: baseUrl + "api/student/recoproducts/info/" + _this.notIncludeId,
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (result) {
+                        console.log(result.body);
+                        _this.info = result.body;
+                        document.title = _this.info.title;
+                    },
+                    error: function (error) {
+
+                    },
+                });
+                // $.ajax({
+                //     url: baseUrl + "api/student/recoproducts/list?limit=6&page=1&professId=" + _this.professId + "&notIncludeId=" + _this.notIncludeId,
+                //     dataType: 'json',
+                //     type: 'GET',
+                //     success: function (result) {
+                //         console.log(result.body.list);
+                //         _this.list = result.body.list;
+                //     },
+                //     error: function (error) {
+
+                //     },
+                // });
+            },
+
+            goClass: function () {
+                window.nativeInterface.executeMethod('s1');
+            },
+            contantNative: function () {
+                $(function () {
+                    var u = navigator.userAgent,
+                        app = navigator.appVersion;
+                    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+                    var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios缁堢
+                    if (isAndroid) {
+                        searchArd();
+                    }
+                    if (isIOS) {
+                        search(1);
+                    }
+
+                    function search(data) {
+                        window.nativeInterface.executeMethod(data);
+                    }
+
+                    function searchArd() {
+                        window.WebViewJavascriptBridge.callHandler(
+                            'executeMethod', {
+                                'param': 'consult'
+                            },
+                            function (responseData) {
+
+                            }
+                        );
+                    }
+                });
+            }
+        },
+        mounted: function () {
+            this.getInfo()
+        }
+    });
+</script>

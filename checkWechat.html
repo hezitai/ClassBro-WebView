@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <!-- iOS 图标 -->
+    <link rel="apple-touch-icon-precomposed" href="./images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/logo.png">
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    #main {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        /* width: 100%; */
+        /* overflow: hidden; */
+        font-family: '微软雅黑';
+        /* position: fixed; */
+        /*width:100%;*/
+        /* height: 100% */
+        /*overflow-x: hidden;*/
+    }
+
+    #main {
+        width: 100%;
+        background: #fff;
+        /* overflow-x: hidden;
+        position: relative; */
+    }
+
+    .wxtip {
+        background: rgba(0, 0, 0, 0.8);
+        text-align: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 998;
+        display: none;
+    }
+
+    .wxtip-icon {
+        width: 5rem;
+        height: 5rem;
+        background: url('./images/openBow.png') no-repeat;
+        display: block;
+        position: absolute;
+        right: 2rem;
+        top: 1rem;
+    }
+
+    .wxtip-txt {
+        margin-top: 4rem;
+        color: #fff;
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: right;
+        padding-right: 6rem;
+    }
+
+    #main {}
+
+    .noWc {
+        width: 100%;
+        height: 100%;
+        background: url('./images/and.png') no-repeat center center;
+        background-size: 100% 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    }
+</style>
+
+<body>
+    <div id="main">
+        <a style="text-align:center;display: block;line-height: 20rem;"
+            href="http://www.classbro.com/static-resource/apk/classbro-teacher.apk">
+            如未自动下载，请点击此处手动下载
+        </a>
+        <div class="noWc">
+            <p class="alertText" style='text-align: center;
+            color:#fff;line-height: 31rem;margin-top:0;'>请点击右上角，选择使用浏览器打开</p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/vue-2.5.16.js"></script>
+<script src="./js/base.js"></script>
+
+<script>
+    $(function () {
+        function isWeiXin() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        if (isWeiXin()) {
+            //    alert('shiweixin')
+            $('.noWc').show();
+        } else {
+            //    alert('bushiweixin');
+            $('.noWc').hide();
+            window.location.href = 'http://www.classbro.com/static-resource/apk/classbro-teacher.apk';
+        }
+
+    })
+</script>
